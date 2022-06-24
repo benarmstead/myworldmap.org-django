@@ -111,3 +111,19 @@ function circleFormat(completed, max) {
   text = `<tspan class="my-value" x="50" y="50" dy="0" style="text-anchor: middle;">${text}</tspan><tspan class="my-text" x="50" y="50" dy="1.2em" style="text-anchor: middle;">${percentage}</tspan>`;
   return text;
 }
+
+let collapsed = true;
+function hideOthers() {
+  let collapsibles = Array.from(document.getElementsByClassName("collapsible"));
+  let primer;
+  if (collapsed) {
+    primer = "block";
+  } else {
+    primer = "none";
+  }
+  console.log(collapsibles);
+  collapsibles.forEach((element) => {
+    element.style.display = primer;
+  });
+  collapsed = !collapsed;
+}
