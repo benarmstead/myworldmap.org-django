@@ -100,6 +100,12 @@ function selectNation(e) {
   }
   resetHighlight(e);
   setCircle();
+  circleProgressEurope.value = visitedOf("Europe");
+  circleProgressAsia.value = visitedOf("Asia");
+  circleProgressNorthAmerica.value = visitedOf("North America");
+  circleProgressSouthAmerica.value = visitedOf("South America");
+  circleProgressAfrica.value = visitedOf("Africa");
+  circleProgressOceania.value = visitedOf("Oceania");
 }
 
 function setCircle() {
