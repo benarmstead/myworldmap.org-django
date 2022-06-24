@@ -1,0 +1,22 @@
+.circle-progress-value {
+  stroke-width: 6px;
+  stroke: hsl(280, 90%, 50%);
+  stroke-linecap: round;
+}
+.circle-progress-circle {
+  stroke-width: 2px;
+}
+
+.world {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  border-radius: 20px;
+  padding: 10px;
+  top: 10px;
+  z-index: 400;
+  height: auto;
+  width: 80%;
+  margin-left: 10%;
+  background-color: white;
+}
