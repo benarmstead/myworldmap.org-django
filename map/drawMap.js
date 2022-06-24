@@ -98,6 +98,7 @@ function selectNation(e) {
   } else {
     COUNTRIES.push(countryCode);
   }
+  resetHighlight(e);
   setCircle();
 }
 
