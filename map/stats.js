@@ -99,7 +99,15 @@ const circleProgressOceania = new CircleProgress(".oceania", {
 });
 
 function circleFormat(completed, max) {
-  let percentage = (max / completed).toFixed(2);
+  let percentage;
+  if (completed !== 0) {
+    percentage = ((completed / max) * 100).toFixed(2) + "%";
+  } else {
+    percentage = 0 + "%";
+  }
+
   let text = completed + " / " + max;
+
+  text = `<tspan class="my-value" x="50" y="50" dy="0" style="text-anchor: middle;">${text}</tspan><tspan class="my-text" x="50" y="50" dy="1.2em" style="text-anchor: middle;">${percentage}</tspan>`;
   return text;
 }
