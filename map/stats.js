@@ -121,7 +121,7 @@ function hideOthers() {
   } else {
     primer = "none";
   }
-  console.log(collapsibles);
+  //console.log(collapsibles);
   collapsibles.forEach((element) => {
     element.style.display = primer;
   });

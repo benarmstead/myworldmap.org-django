@@ -320,17 +320,3 @@ function toGoFunc() {
   });
   return toGo;
 }
-
-const no_countries = 195; //Object.keys(countryList).length;
-const proportion_visited = (Object.keys(COUNTRIES).length / no_countries) * 100;
-const visited =
-  "Visited " +
-  proportion_visited.toFixed(2) +
-  "% of countries. " +
-  Object.keys(COUNTRIES).length +
-  " / " +
-  no_countries;
-
-//document.getElementById("propVisited").innerText = visited;
-//document.getElementById("beenTo").innerText += "Been to: \n" + beenToFunc();
-//document.getElementById("left").innerText += "Countries left: \n" + toGoFunc();
