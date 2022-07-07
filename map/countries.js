@@ -2,30 +2,25 @@
 COUNTRIES = [
   "GBR", // UK
   "ESP", // Spain
+  "LUX", // Luxembourg
+  "LIE", // Liechtenstein
   "CHE", // Switzerland
-  "DEU", // Germany
   "AUT", // Austria
-  "SVK", // Slovakia
-  "HUN", // Hungary
-  "SVN", // Slovenia
-  "HRV", // Croatia
-  "ITA", // Italy
   "NLD", // Netherlands
   "BEL", // Belgium
   "FRA", // France
   "THA", // Thialand
   "MCO", // Monaco
-  "LUX", // Luxembourg
-  "BIH", // Bosnia and Herzegovina
-  "MNE", // Montenegro
-  "ALB", // Albania
+  "ITA", // Italy
+  "DEU", // Germany
+  "HUN", // Hungary
+  "SVK", // Slovakia
+  "HRV", // Croatia
+  "SVN", // Slovenia
   "CZE", // Czechia
-
-  "LUX", // Luxembourg
-
-  //"BIH", // Bosnia and Herzegovina
-  //"MNE", // Montenegro
-  //"ALB", // Albania
+  "ALB", // Albania
+  "MNE", // Montenegro
+  "BIH", // Bosnia and Herzegovina
 
   /*
   "IRL", //  "Ireland",
