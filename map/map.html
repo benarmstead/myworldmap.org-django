@@ -15,45 +15,46 @@
   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
     integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
     crossorigin=""></script>
-  <script src="/map/depends/circle.js"></script>
+  <script src="/depends/circle.js"></script>
 </head>
 
 <body>
   <div id="map"></div>
 
-  <div class="statsCard" style="flex-direction: row;display: flex;flex-flow: wrap;">
-    <div class="individualStat">
-      <p>World</p>
-      <div class="world"></div>
-    </div>
-    <div class="individualStat collapsible">
-      <p>Europe</p>
-      <div class="europe"></div>
-    </div>
-    <div class="individualStat collapsible">
-      <p>Asia</p>
-      <div class="asia"></div>
-    </div>
-    <div class="individualStat collapsible">
-      <p>North America</p>
-      <div class="northAmerica"></div>
-    </div>
-    <div class="individualStat collapsible">
-      <p>South America</p>
-      <div class="southAmerica"></div>
-    </div>
-    <div class="individualStat collapsible">
-      <p>Africa</p>
-      <div class="africa"></div>
-    </div>
-    <div class="individualStat collapsible">
-      <p>Oceania</p>
-      <div class="oceania" id="oceania"></div>
+  <div class="statsCard">
+    <div style="flex-direction: row;display: flex;flex-flow: wrap;">
+
+      <div class="individualStat">
+        <p>World</p>
+        <div class="world"></div>
+      </div>
+      <div class="individualStat collapsible">
+        <p>Europe</p>
+        <div class="europe"></div>
+      </div>
+      <div class="individualStat collapsible">
+        <p>Asia</p>
+        <div class="asia"></div>
+      </div>
+      <div class="individualStat collapsible">
+        <p>North America</p>
+        <div class="northAmerica"></div>
+      </div>
+      <div class="individualStat collapsible">
+        <p>South America</p>
+        <div class="southAmerica"></div>
+      </div>
+      <div class="individualStat collapsible">
+        <p>Africa</p>
+        <div class="africa"></div>
+      </div>
+      <div class="individualStat collapsible">
+        <p>Oceania</p>
+        <div class="oceania" id="oceania"></div>
+      </div>
     </div>
 
     <button type="button" onclick="hideOthers()">Toggle Stats</button>
-
-
   </div>
 
   <script type="text/javascript" src="/map/depends/circle.js"></script>

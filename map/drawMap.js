@@ -116,6 +116,7 @@ function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
+    // Enable selection
     click: selectNation,
   });
 }

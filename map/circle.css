@@ -12,7 +12,7 @@
   margin-right: 50px;
   position: absolute;
   border-radius: 20px;
-  padding: 10px;
+  padding: 5px;
   top: 10px;
   z-index: 400;
   height: auto;
@@ -22,7 +22,7 @@
 .individualStat {
   align-self: center;
   text-align: center;
-  padding: 5px;
+  padding: 2px;
 }
 
 .collapsible {
