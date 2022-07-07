@@ -9,22 +9,45 @@ COUNTRIES = [
   "HUN", // Hungary
   "SVN", // Slovenia
   "HRV", // Croatia
-  //  "BIH", // Bosnia and Herzegovina
   "ITA", // Italy
   "NLD", // Netherlands
   "BEL", // Belgium
-  //"ARE", // United Arab Emirates
   "FRA", // France
   "THA", // Thialand
   "MCO", // Monaco
   "LUX", // Luxembourg
-  //  "BIH", // Bosnia and Herzegovina
-  //  "SRB", // Serbia
-  //  "MNE", // Montenegro
-  // "MKD", // Republic of North Macedonia
-  //"ALB", // Albania
-  //"KOS", // Kosovo
+  "BIH", // Bosnia and Herzegovina
+  "MNE", // Montenegro
+  "ALB", // Albania
   "CZE", // Czechia
+
+  "LUX", // Luxembourg
+
+  //"BIH", // Bosnia and Herzegovina
+  //"MNE", // Montenegro
+  //"ALB", // Albania
+
+  /*
+  "IRL", //  "Ireland",
+  "DNK", // "Denmark",
+  "NOR", //: "Norway",
+  "SWE", //: "Sweden",
+  "FIN", //: "Finland",
+  "LVA", //: "Latvia",
+  "EST", //: "Estonia",
+  "LTU", //: "Lithuania",
+  "ROU", // "Romania",
+  "BGR", //"Bulgaria",
+  "GRC", //"Greece",
+  "ISL", //"Iceland",
+
+  "SRB", // Serbia
+  "MKD", // Republic of North Macedonia
+  "KOS", // Kosovo
+
+  "POL", // Poland
+  "PRT", // Portugal*/
+  //"ARE", // United Arab Emirates
 ];
 
 const countryList = {
@@ -278,3 +301,36 @@ const countryList = {
   ZWE: "Zimbabwe",
   ALA: "Åland Islands",
 };
+
+function beenToFunc() {
+  let countries = "";
+  Object.keys(COUNTRIES).forEach((key) => {
+    countries += countryList[key] + "\n";
+  });
+  return countries;
+}
+
+function toGoFunc() {
+  let beenTo = beenToFunc();
+  let toGo = "";
+  Object.keys(countryList).forEach((item) => {
+    if (!COUNTRIES[item]) {
+      toGo += countryList[item] + "\n";
+    }
+  });
+  return toGo;
+}
+
+const no_countries = 195; //Object.keys(countryList).length;
+const proportion_visited = (Object.keys(COUNTRIES).length / no_countries) * 100;
+const visited =
+  "Visited " +
+  proportion_visited.toFixed(2) +
+  "% of countries. " +
+  Object.keys(COUNTRIES).length +
+  " / " +
+  no_countries;
+
+//document.getElementById("propVisited").innerText = visited;
+//document.getElementById("beenTo").innerText += "Been to: \n" + beenToFunc();
+//document.getElementById("left").innerText += "Countries left: \n" + toGoFunc();
