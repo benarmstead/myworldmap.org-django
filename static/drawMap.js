@@ -92,20 +92,6 @@ function getCookie(name) {
 const csrftoken = getCookie("csrftoken");
 
 function selectNation(e) {
-  const newTrip = {
-    data: COUNTRIES,
-  };
-
-  const options = {
-    method: "POST",
-    body: JSON.stringify(newTrip),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      "X-CSRFToken": csrftoken,
-    },
-  };
-  fetch("/save/", options);
-
   let layer = e.target;
 
   layer.setStyle({
@@ -137,6 +123,16 @@ function selectNation(e) {
   circleProgressSouthAmerica.value = visitedOf("South America");
   circleProgressAfrica.value = visitedOf("Africa");
   circleProgressOceania.value = visitedOf("Oceania");
+
+  const options = {
+    method: "POST",
+    body: JSON.stringify(COUNTRIES),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+      "X-CSRFToken": csrftoken,
+    },
+  };
+  fetch("/save/", options);
 }
 
 function setCircle() {

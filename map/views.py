@@ -9,23 +9,16 @@ from .models import MapData
 
 
 def saveData(request):
-    data = json.loads(request.body.decode("utf-8"))["data"]
-
-    print(data)
-    newData = ""
-    for i in data:
-        newData += str(i) + ","
-    data = newData
-
-    newData = MapData(1, data)
+    data = request.body.decode("utf-8")
+    newData = MapData(1, data=data)
     newData.save()
-
     return HttpResponseRedirect("/")
 
 
 def getData(request):
     data = MapData.objects.filter(id=1)
-    data.values()
+    data = data[0].getJSON()
+    print(data)
 
     return render(
         request,

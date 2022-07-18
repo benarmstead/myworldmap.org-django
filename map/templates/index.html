@@ -12,7 +12,18 @@
   <link rel="stylesheet" href="{% static '/mapStyle.css' %}" />
   <link rel="stylesheet" href="{% static '/depends/leaflet.css' %}" />
   <script type="text/javascript">
-    var a = "{{ data }}";
+    let COUNTRIES = {{ data| safe }};
+    if (COUNTRIES.includes === undefined) {
+      COUNTRIES = COUNTRIES.data;
+    }
+    console.log(COUNTRIES)
+    /*console.log(COUNTRIES)
+    console.log(COUNTRIES)
+    if (COUNTRIES === undefined) {
+      COUNTRIES = { data: [] }
+    }
+    console.log(COUNTRIES)
+    */
   </script>
 </head>
 
