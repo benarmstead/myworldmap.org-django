@@ -17,8 +17,11 @@ def saveData(request):
 
 def getData(request):
     data = MapData.objects.filter(id=1)
-    data = data[0].getJSON()
-    print(data)
+    
+    try:
+        data = data[0].getJSON()
+    except IndexError:
+        data = "[]"
 
     return render(
         request,
