@@ -29,7 +29,28 @@
 
 <body>
   <div id="map"></div>
+  
+  <div >
+    
+  </div>
 
+  <div class="statsCard" id="" style="margin-left: 175px;">
+    {% if user.is_authenticated %}
+    <div class="alert alert-success" role="alert" style="align-items: center;">
+      <h3>Welcome {{ user.username }}!</h3>
+      <a id="loginButtons" href="{% url 'logout' %}">Logout?</a>
+    </div>
+    {% else %}
+    <div class="alert alert-success" role="alert">
+      <div style="text-align: center;">
+        <h3>Welcome!</h3>
+        <p>Log in to save you're map</p>
+      </div>
+      <a id="loginButtons" href="{% url 'register' %}">Signup</a>
+      <a id="loginButtons" href="{% url 'login' %}">Login</a>
+    </div>
+    {% endif %}
+  </div>
   <div class="statsCard">
     <div style="flex-direction: row;display: flex;flex-flow: wrap;">
 

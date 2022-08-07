@@ -1,18 +1,20 @@
 import json
+import uuid
 
 from django.db import models
 
 
 class MapData(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     data = models.JSONField(null=False, default=dict)
-
-  #  def __str__(self):
+    user = models.CharField(null=False, max_length=256)
 
     def getJSON(self):
         data = json.dumps(self.data)
 
-        # print(data)
         return (
             self.data
-            # self.data,
         )
+    
+    def __str__(self):
+        return self.id 
