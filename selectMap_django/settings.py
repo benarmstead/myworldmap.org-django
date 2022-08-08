@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-1(u@yl%ingg1mn@_vg9w&4-6*d&-t24um0cjrv9044e!$4x)b!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.0.10", "127.0.0.1", "map.benarmstead.co.uk", "https://map.benarmstead.co.uk"]
+DOMAIN = "benarmstead.co.uk"
+
+ALLOWED_HOSTS = ["192.168.0.10", "127.0.0.1", "map." + DOMAIN]
+CSRF_TRUSTED_ORIGINS = ['https://*.' + DOMAIN, 'https://*.127.0.0.1']
 
 
 # Application definition
