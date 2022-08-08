@@ -92,45 +92,49 @@ function getCookie(name) {
 const csrftoken = getCookie("csrftoken");
 
 function selectNation(e) {
-  let layer = e.target;
-
-  layer.setStyle({
-    weight: 3,
-    color: "blue",
-    dashArray: "",
-    fillOpacity: 0.3,
-  });
-
-  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-    layer.bringToFront();
-  }
-
-  info.update(layer.feature.properties);
-  let countryCode = layer.feature.properties.adm0_a3;
-  if (COUNTRIES.includes(countryCode)) {
-    let index = COUNTRIES.indexOf(countryCode);
-    if (index > -1) {
-      COUNTRIES.splice(index, 1);
+    if (!EDITABLE) {
+      return
     }
-  } else {
-    COUNTRIES.push(countryCode);
-  }
-  resetHighlight(e);
-  setCircle();
-  circleProgressEurope.value = visitedOf("Europe");
-  circleProgressAsia.value = visitedOf("Asia");
-  circleProgressNorthAmerica.value = visitedOf("North America");
-  circleProgressSouthAmerica.value = visitedOf("South America");
-  circleProgressAfrica.value = visitedOf("Africa");
-  circleProgressOceania.value = visitedOf("Oceania");
 
-  const options = {
-    method: "POST",
-    body: JSON.stringify(COUNTRIES),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      "X-CSRFToken": csrftoken,
-    },
+    let layer = e.target;
+    
+    layer.setStyle({
+      weight: 3,
+      color: "blue",
+      dashArray: "",
+      fillOpacity: 0.3,
+    });
+    
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+      layer.bringToFront();
+    }
+    
+    info.update(layer.feature.properties);
+    let countryCode = layer.feature.properties.adm0_a3;
+    if (COUNTRIES.includes(countryCode)) {
+      let index = COUNTRIES.indexOf(countryCode);
+      if (index > -1) {
+        COUNTRIES.splice(index, 1);
+      }
+    } else {
+      COUNTRIES.push(countryCode);
+    }
+    resetHighlight(e);
+    setCircle();
+    circleProgressEurope.value = visitedOf("Europe");
+    circleProgressAsia.value = visitedOf("Asia");
+    circleProgressNorthAmerica.value = visitedOf("North America");
+    circleProgressSouthAmerica.value = visitedOf("South America");
+    circleProgressAfrica.value = visitedOf("Africa");
+    circleProgressOceania.value = visitedOf("Oceania");
+    
+    const options = {
+      method: "POST",
+      body: JSON.stringify(COUNTRIES),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "X-CSRFToken": csrftoken,
+      },
   };
   fetch("/save/", options);
 }

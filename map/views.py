@@ -27,9 +27,8 @@ def saveData(request):
     return HttpResponseRedirect("/")
 
 
-def getData(request):
-    user  = request.user
-    data = MapData.objects.filter(user=user.username)
+def get_data(request, username, editable):
+    data = MapData.objects.filter(user=username)
     
     try:
         data = data[0].getJSON()
@@ -39,5 +38,13 @@ def getData(request):
     return render(
         request,
         "index.html",
-        {"data": data},
+        {"data": data, "editable": editable},
     )
+
+def index(request):
+    return get_data(request, request.user.username, "true")
+    
+
+
+def user_viewer(request, username):
+    return get_data(request, username, "false")

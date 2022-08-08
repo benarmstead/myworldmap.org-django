@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{% static '/mapStyle.css' %}" />
   <link rel="stylesheet" href="{% static '/depends/leaflet.css' %}" />
   <script type="text/javascript">
+    let EDITABLE = {{ editable| safe }}
     let COUNTRIES = {{ data| safe }};
     if (COUNTRIES.includes === undefined) {
       COUNTRIES = COUNTRIES.data;
