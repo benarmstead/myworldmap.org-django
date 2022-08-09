@@ -28,7 +28,7 @@ DEBUG = True
 DOMAIN = "benarmstead.co.uk"
 
 ALLOWED_HOSTS = ["192.168.0.10", "127.0.0.1", "map." + DOMAIN]
-CSRF_TRUSTED_ORIGINS = ['https://*.' + DOMAIN, 'https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.' + DOMAIN, 'https://*.127.0.0.1', "http://127.0.0.1"]
 
 
 # Application definition
