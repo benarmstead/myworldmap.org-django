@@ -18,8 +18,8 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props) {
-  let infoItem = document.getElementsByClassName("info")
-  if (infoItem.length !== 0){
+  let infoItem = document.getElementsByClassName("info");
+  if (infoItem.length !== 0) {
     infoItem[0].style.display = "block";
   }
   this._div.innerHTML = props ? "<b>" + props.name : null;
@@ -75,8 +75,8 @@ let geojson;
 
 function resetHighlight(e) {
   geojson.resetStyle(e.target);
-  let infoItem = document.getElementsByClassName("info")
-  if (infoItem.length !== 0){
+  let infoItem = document.getElementsByClassName("info");
+  if (infoItem.length !== 0) {
     infoItem[0].style.display = "none";
   }
 }
@@ -99,49 +99,49 @@ function getCookie(name) {
 const csrftoken = getCookie("csrftoken");
 
 function selectNation(e) {
-    if (!EDITABLE) {
-      return
-    }
+  if (!EDITABLE) {
+    return;
+  }
 
-    let layer = e.target;
-    
-    layer.setStyle({
-      weight: 3,
-      color: "blue",
-      dashArray: "",
-      fillOpacity: 0.3,
-    });
-    
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-      layer.bringToFront();
+  let layer = e.target;
+
+  layer.setStyle({
+    weight: 3,
+    color: "blue",
+    dashArray: "",
+    fillOpacity: 0.3,
+  });
+
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    layer.bringToFront();
+  }
+
+  info.update(layer.feature.properties);
+  let countryCode = layer.feature.properties.adm0_a3;
+  if (COUNTRIES.includes(countryCode)) {
+    let index = COUNTRIES.indexOf(countryCode);
+    if (index > -1) {
+      COUNTRIES.splice(index, 1);
     }
-    
-    info.update(layer.feature.properties);
-    let countryCode = layer.feature.properties.adm0_a3;
-    if (COUNTRIES.includes(countryCode)) {
-      let index = COUNTRIES.indexOf(countryCode);
-      if (index > -1) {
-        COUNTRIES.splice(index, 1);
-      }
-    } else {
-      COUNTRIES.push(countryCode);
-    }
-    resetHighlight(e);
-    setCircle();
-    circleProgressEurope.value = visitedOf("Europe");
-    circleProgressAsia.value = visitedOf("Asia");
-    circleProgressNorthAmerica.value = visitedOf("North America");
-    circleProgressSouthAmerica.value = visitedOf("South America");
-    circleProgressAfrica.value = visitedOf("Africa");
-    circleProgressOceania.value = visitedOf("Oceania");
-    
-    const options = {
-      method: "POST",
-      body: JSON.stringify(COUNTRIES),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "X-CSRFToken": csrftoken,
-      },
+  } else {
+    COUNTRIES.push(countryCode);
+  }
+  resetHighlight(e);
+  setCircle();
+  circleProgressEurope.value = visitedOf("Europe");
+  circleProgressAsia.value = visitedOf("Asia");
+  circleProgressNorthAmerica.value = visitedOf("North America");
+  circleProgressSouthAmerica.value = visitedOf("South America");
+  circleProgressAfrica.value = visitedOf("Africa");
+  circleProgressOceania.value = visitedOf("Oceania");
+
+  const options = {
+    method: "POST",
+    body: JSON.stringify(COUNTRIES),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+      "X-CSRFToken": csrftoken,
+    },
   };
   fetch("/save/", options);
 }

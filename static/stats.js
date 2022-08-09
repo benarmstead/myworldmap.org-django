@@ -1,33 +1,5 @@
-/* function beenToFunc() {
-  let countries = "";
-  Object.keys(COUNTRIES).forEach((key) => {
-    countries += countryList[key] + "\n";
-  });
-  return countries;
-}
-
-function toGoFunc() {
-  let beenTo = beenToFunc();
-  let toGo = "";
-  Object.keys(countryList).forEach((item) => {
-    if (!COUNTRIES[item]) {
-      toGo += countryList[item] + "\n";
-    }
-  });
-  return toGo;
-} */
-
 const no_countries = Object.keys(countryList).length;
 let visited = Object.keys(COUNTRIES).length;
-
-/*Object.keys(COUNTRIES).foreach((visitedNation) => {
-  data.foreach((testNation) => {
-    if (visitedNation === testNation.adm0_a3) {
-      console.log("here");
-    }
-  });
-  console.log(visitedNation);
-});*/
 
 function visitedOf(continent) {
   let counter = 0;
@@ -121,7 +93,6 @@ function hideOthers() {
   } else {
     primer = "none";
   }
-  //console.log(collapsibles);
   collapsibles.forEach((element) => {
     element.style.display = primer;
   });
