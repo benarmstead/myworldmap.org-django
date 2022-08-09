@@ -1,8 +1,8 @@
 .modal {
   display: none;
-  position: fixed;
+  position: absolute;
   z-index: 401;
-  padding-top: 50%;
+  padding-top: 30%;
   left: 0;
   top: 0;
   width: 100%;
