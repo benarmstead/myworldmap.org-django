@@ -22,3 +22,11 @@ function copyShareUrl() {
   copyText.setSelectionRange(0, 99999);
   navigator.clipboard.writeText(copyText.value);
 }
+
+function copiedMessage(message) {
+  document.getElementById("copiedMessage").innerHTML = message;
+
+  setTimeout(function () {
+    document.getElementById("copiedMessage").innerHTML = "";
+  }, 3000);
+}
