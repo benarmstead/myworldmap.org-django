@@ -42,7 +42,11 @@ def get_data(request, username, editable):
     )
 
 def index(request):
-    return get_data(request, request.user.username, "true")
+    editable = "false"
+    if request.user.is_authenticated:
+        editable = "true"
+
+    return get_data(request, request.user.username, editable)
     
 
 
