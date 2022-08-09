@@ -8,17 +8,21 @@
 <meta name="description" content="Interactive map of locations which I have travelled to">
 
 <title>Map</title>
-{% load static %}
+{% load static compress %}
+{% compress css %}
 <link rel="stylesheet" href="{% static '/circle.css' %}" />
 <link rel="stylesheet" href="{% static '/mapStyle.css' %}" />
 {% if user.is_authenticated %}
 <link rel="stylesheet" href="{% static '/share/share.css' %}" />
 {% endif %}
 <link rel="stylesheet" href="{% static '/depends/leaflet.css' %}" />
+{% endcompress %}
+{% compress js %}
 <script type="text/javascript">
-let EDITABLE = {{ editable| safe }}
-let COUNTRIES = {{ data| safe }};
+    let EDITABLE = {{ editable| safe }}
+    let COUNTRIES = {{ data| safe }};
 if (COUNTRIES.includes === undefined) {
     COUNTRIES = COUNTRIES.data;
 }
 </script>
+{% endcompress %}
