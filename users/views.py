@@ -3,16 +3,21 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from .forms import UserRegistrationForm
 
+
 def home(request):
     return render(request, 'index.html')
+
 
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
 
-            messages.success(request, f'Your account has been created. You can log in now!')    
+            messages.success(
+                request, f'Your account has been created. You can log in now!')
+
+            login(request, user)
             return redirect('/')
     else:
         form = UserRegistrationForm()
