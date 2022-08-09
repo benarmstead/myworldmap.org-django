@@ -1,0 +1,13 @@
+{% load static %} 
+<!--<script type="text/javascript" src="{% static '/depends/leaflet.js' %}"></script>-->
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+crossorigin=""></script>
+{% if user.is_authenticated %}
+<script type="text/javascript" src="{% static '/share/share.js' %}"></script>
+{% endif %}
+<script type="text/javascript" src="{% static '/depends/circle.js' %}"></script>
+<script type="text/javascript" src="{% static '/countries.js' %}"></script>
+<script type="text/javascript" src="{% static '/custom.geo.js' %}"></script>
+<script type="text/javascript" src="{% static '/drawMap.js' %}"></script>
+<script type="text/javascript" src="{% static '/stats.js' %}"></script>

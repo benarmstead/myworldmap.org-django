@@ -8,15 +8,9 @@
 }
 
 .statsCard {
-  margin-left: 50px;
-  margin-right: 50px;
-  position: absolute;
-  border-radius: 20px;
-  padding: 5px;
-  top: 10px;
-  z-index: 400;
-  height: auto;
-  background-color: white;
+  flex-direction: row;
+  display: flex;
+  flex-flow: wrap;
 }
 
 .individualStat {

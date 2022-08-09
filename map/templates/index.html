@@ -1,100 +1,20 @@
 <html>
 
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-  <style>
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-  </style>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=5.0">
-  <meta name="description" content="Interactive map of locations which I have travelled to">
-
-  <title>Map</title>
-  {% csrf_token %}
-  {% load static %}
-  <link rel="stylesheet" href="{% static '/circle.css' %}" />
-  <link rel="stylesheet" href="{% static '/mapStyle.css' %}" />
-  <link rel="stylesheet" href="{% static '/depends/leaflet.css' %}" />
-  <script type="text/javascript">
-    let EDITABLE = {{ editable| safe }}
-    let COUNTRIES = {{ data| safe }};
-    if (COUNTRIES.includes === undefined) {
-      COUNTRIES = COUNTRIES.data;
-    }
-  </script>
+  {% include "header.html" %}
 </head>
 
 <body>
   <div id="map"></div>
 
-  <div class="statsCard" id="" style="margin-left: 175px;">
-    {% if user.is_authenticated %}
-    <div class="alert alert-success" role="alert" style="align-items: center;">
-      <h3>Welcome {{ user.username | capfirst }}!</h3>
-      <a id="loginButtons" href="{% url 'logout' %}">Logout?</a>
-    </div>
-    {% else %}
-    <div class="alert alert-success" role="alert">
-      <div style="text-align: center;">
-        <h3>Welcome!</h3>
-        <p>Log in to create your map</p>
-      </div>
-      <a id="loginButtons" href="{% url 'register' %}">Signup</a>
-      <a id="loginButtons" href="{% url 'login' %}">Login</a>
-    </div>
-    {% endif %}
-  </div>
-  <div class="statsCard">
-    <div style="flex-direction: row;display: flex;flex-flow: wrap;">
+  {% if user.is_authenticated %}
+    {% include "share_modal.html" %}
+  {% endif %}
 
-      <div class="individualStat">
-        <p>World</p>
-        <div class="world"></div>
-      </div>
-      <div class="individualStat collapsible">
-        <p>Europe</p>
-        <div class="europe"></div>
-      </div>
-      <div class="individualStat collapsible">
-        <p>Asia</p>
-        <div class="asia"></div>
-      </div>
-      <div class="individualStat collapsible">
-        <p>North America</p>
-        <div class="northAmerica"></div>
-      </div>
-      <div class="individualStat collapsible">
-        <p>South America</p>
-        <div class="southAmerica"></div>
-      </div>
-      <div class="individualStat collapsible">
-        <p>Africa</p>
-        <div class="africa"></div>
-      </div>
-      <div class="individualStat collapsible">
-        <p>Oceania</p>
-        <div class="oceania" id="oceania"></div>
-      </div>
-    </div>
+  {% include "account_card.html" %}
+  {% include "stats_card.html" %}
 
-    <button type="button" onclick="hideOthers()">Toggle Stats</button>
-  </div>
-
-  <!--<script type="text/javascript" src="{% static '/depends/leaflet.js' %}"></script>-->
-  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-    crossorigin=""></script>
-  <script type="text/javascript" src="{% static '/depends/circle.js' %}"></script>
-  <script type="text/javascript" src="{% static '/countries.js' %}"></script>
-  <script type="text/javascript" src="{% static '/custom.geo.js' %}"></script>
-  <script type="text/javascript" src="{% static '/drawMap.js' %}"></script>
-  <script type="text/javascript" src="{% static '/stats.js' %}"></script>
-
+  {% include "js_includes.html" %}
 </body>
 
 </html>
