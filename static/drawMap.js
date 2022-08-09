@@ -18,6 +18,10 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props) {
+  let infoItem = document.getElementsByClassName("info")
+  if (infoItem.length !== 0){
+    infoItem[0].style.display = "block";
+  }
   this._div.innerHTML = props ? "<b>" + props.name : null;
 };
 
@@ -71,7 +75,10 @@ let geojson;
 
 function resetHighlight(e) {
   geojson.resetStyle(e.target);
-  info.update();
+  let infoItem = document.getElementsByClassName("info")
+  if (infoItem.length !== 0){
+    infoItem[0].style.display = "none";
+  }
 }
 
 function getCookie(name) {
@@ -147,7 +154,6 @@ function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
-    // Enable selection
     click: selectNation,
   });
 }
