@@ -30,6 +30,8 @@ DOMAIN = "benarmstead.co.uk"
 ALLOWED_HOSTS = ["192.168.0.10", "127.0.0.1", "map." + DOMAIN]
 CSRF_TRUSTED_ORIGINS = ['https://*.' + DOMAIN, 'https://*.127.0.0.1', "http://127.0.0.1"]
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -71,8 +73,6 @@ TEMPLATES = [
         },
     },
 ]
-
-LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'selectMap_django.wsgi.application'
 
