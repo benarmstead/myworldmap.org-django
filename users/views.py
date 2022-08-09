@@ -12,10 +12,15 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            #BANNED_NAMES = ["save", "settings", "login", "logout", ]
+            # if form.username in BANNED_NAMES:
+            #    return
+
             user = form.save()
 
             messages.success(
-                request, f'Your account has been created. You can log in now!')
+                request, f'Your account has been created. You can log in now!'
+            )
 
             login(request, user)
             return redirect('/')
@@ -28,3 +33,7 @@ def register(request):
 
 def profile(request):
     return render(request, "users/profile.html")
+
+
+def settings(request):
+    return render(request, "settings/index.html")

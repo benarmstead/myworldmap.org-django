@@ -9,12 +9,5 @@ class MapData(models.Model):
     data = models.JSONField(null=False, default=dict)
     user = models.CharField(null=False, max_length=256)
 
-    def getJSON(self):
-        data = json.dumps(self.data)
-
-        return (
-            self.data
-        )
-    
     def __str__(self):
-        return self.id 
+        return self.id

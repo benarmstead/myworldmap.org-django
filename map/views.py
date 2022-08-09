@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 from .models import MapData
 
+
 def saveData(request):
     data = request.body.decode("utf-8")
     user = request.user
@@ -29,9 +30,9 @@ def saveData(request):
 
 def get_data(request, username, editable):
     data = MapData.objects.filter(user=username)
-    
+
     try:
-        data = data[0].getJSON()
+        data = data[0].data
     except IndexError:
         data = "[]"
 
@@ -41,13 +42,13 @@ def get_data(request, username, editable):
         {"data": data, "editable": editable},
     )
 
+
 def index(request):
     editable = "false"
     if request.user.is_authenticated:
         editable = "true"
 
     return get_data(request, request.user.username, editable)
-    
 
 
 def user_viewer(request, username):
