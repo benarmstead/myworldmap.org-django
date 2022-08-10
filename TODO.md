@@ -5,3 +5,4 @@ Add names of countries see: https://stackoverflow.com/questions/47016859/how-to-
 https://github.com/raphaellepuschitz/SVG-World-Map/blob/c7d20284d66a62f3f549c48eab611bb3ca10ae09/src/svg-world-map.js#L624
 Obsfucate code
 Fix copy icon overlapping on longer names
+Create mainsite homepage

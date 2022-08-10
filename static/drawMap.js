@@ -7,6 +7,7 @@ map.setMaxBounds([
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 18,
+  minZoom: 2,
 }).addTo(map);
 
 let info = L.control();

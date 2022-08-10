@@ -2,13 +2,15 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Share map</h2>
-    <p class="modal-text">
-        https://map.benarmstead.co.uk{% if request.path == "/" %}{{ request.path }}{{ user.username }}{% else %}{{ request.path }}{% endif %}
-      <span class="copy">
-        <a onclick='navigator.clipboard.writeText("https://map.benarmstead.co.uk{% if request.path == "/" %}{{ request.path }}{{ user.username }}{% else %}{{ request.path }}{% endif %}");copiedMessage("Copied URL to clipboard!")'><i class="fa fa-clone icon"></i></a>
-        <p id="copiedMessage" style="margin-left: 5px;"></p>
-      </span>
-    </p>
+    <div class="row">
+      <div class="text-column">
+        <p class="modal-text">https://map.benarmstead.co.uk{% if request.path == "/" %}{{ request.path }}{{ user.username }}{% else %}{{ request.path }}{% endif %}</p>
+      </div>
+      <div class="copy-column">
+        <a class="copy" onclick='navigator.clipboard.writeText("https://map.benarmstead.co.uk{% if request.path == "/" %}{{ request.path }}{{ user.username }}{% else %}{{ request.path }}{% endif %}");copiedMessage("Copied URL to clipboard!")'><i class="fa fa-clone icon"></i></a>
+      </div>
+    </div>
+    <p id="copiedMessage" style="margin-left: 5px;"></p>
   </div>
 </div>
 

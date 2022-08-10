@@ -28,7 +28,7 @@ def saveData(request):
     return HttpResponseRedirect("/")
 
 
-def get_data(request, username, editable):
+def get_data(username):
     data = MapData.objects.filter(user=username)
 
     try:
@@ -36,11 +36,7 @@ def get_data(request, username, editable):
     except IndexError:
         data = "[]"
 
-    return render(
-        request,
-        "index.html",
-        {"data": data, "editable": editable},
-    )
+    return data
 
 
 def index(request):
@@ -48,8 +44,31 @@ def index(request):
     if request.user.is_authenticated:
         editable = "true"
 
-    return get_data(request, request.user.username, editable)
+    return render(
+        request,
+        "index.html",
+        {"data": get_data(request.user.username), "editable": editable},
+    )
 
 
 def user_viewer(request, username):
-    return get_data(request, username, "false")
+    editable = "false"
+
+    return render(
+        request,
+        "index.html",
+        {"data": get_data(username), "editable": editable},
+    )
+
+
+def settings(request):
+    data = MapData.objects.filter(user=request.user.username)
+    data = data[0]
+
+    public = data.public
+
+    return render(
+        request,
+        "settings/index.html",
+        {"public": public},
+    )
