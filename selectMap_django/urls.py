@@ -20,8 +20,11 @@ from users.views import *
 
 from django.shortcuts import redirect
 from django.contrib.auth import views as auth_views
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
+    path("robots.txt", TemplateView.as_view(
+        template_name="robots.txt", content_type="text/plain")),
     path('admin/', admin.site.urls),
     path('', index, name="index"),
     path('<str:username>', user_viewer),
