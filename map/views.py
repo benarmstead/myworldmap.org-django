@@ -1,8 +1,9 @@
 import json
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import logout
 from .models import MapData
 
 
@@ -72,3 +73,16 @@ def settings(request):
         "settings/index.html",
         {"public": public},
     )
+
+
+def del_user(request):
+    username = request.user.username
+
+    data = MapData.objects.filter(user=username)
+    data.delete()
+    u = User.objects.get(username=username)
+    u.delete()
+
+    logout(request)
+
+    return redirect('/')

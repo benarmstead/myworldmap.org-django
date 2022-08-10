@@ -3,5 +3,8 @@
     <h1><a href="{% url 'index' %}">Home</a></h1>
     <input type="checkbox" id="publicMap" name="publicMap" value="">
     <label for="publicMap">Allow public viewing of map</label><br>
+
+    <a href="{% url 'del_user' %}">Delete User</a>
+
 {% else %}
 {% endif %}

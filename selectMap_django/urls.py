@@ -26,6 +26,7 @@ urlpatterns = [
     path("robots.txt", TemplateView.as_view(
         template_name="robots.txt", content_type="text/plain")),
     path('admin/', admin.site.urls),
+    path('settings/delete/', del_user, name="del_user"),
     path('', index, name="index"),
     path('<str:username>', user_viewer),
     path('save/', saveData),
