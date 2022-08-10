@@ -5,10 +5,33 @@ map.setMaxBounds([
   [90, 180],
 ]);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 18,
-  minZoom: 2,
-}).addTo(map);
+/*
+function setUpLabels() {
+  let pane = map.createPane("labels");
+  pane.style.zIndex = 650;
+  pane.style.pointerEvents = "none";
+}
+
+setUpLabels();
+var positronLabels = L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
+  {
+    attribution: "©OpenStreetMap, ©CartoDB",
+    pane: "labels",
+  }
+).addTo(map);
+
+// https://leafletjs.com/examples/map-panes/
+
+*/
+
+L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+  {
+    maxZoom: 18,
+    minZoom: 2,
+  }
+).addTo(map);
 
 let info = L.control();
 
