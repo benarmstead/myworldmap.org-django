@@ -1,13 +1,15 @@
-let map = L.map("map", { attributionControl: false });
+let map = L.map("map", { attributionControl: true });
 map.setView([20, 0], 3);
 map.setMaxBounds([
   [-90, -180],
   [90, 180],
 ]);
+map.attributionControl.setPrefix("");
 
 L.tileLayer(
   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
   {
+    attribution: "©OpenStreetMap, ©CartoDB",
     maxZoom: 18,
     minZoom: 2,
   }
