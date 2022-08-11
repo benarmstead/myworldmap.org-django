@@ -1,10 +1,33 @@
-{% if user.is_authenticated %}
-    <p>Settings page in progress</p>
-    <h1><a href="{% url 'index' %}">Home</a></h1>
-    <input type="checkbox" id="publicMap" name="publicMap" value="">
-    <label for="publicMap">Allow public viewing of map</label><br>
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Settings | Map</title>
+    <meta charset="utf-8">
 
-    <a href="{% url 'del_user' %}">Delete User</a>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/settings/style.css">
+    
+  </head>
+  <body>
 
-{% else %}
-{% endif %}
+    <main>
+        {% if user.is_authenticated %}
+            <h1>Settings</h1>
+            <p>Settings in progress</p>
+            <p><a href="{% url 'index' %}">Home</a></p>
+            <input type="checkbox" id="publicMap" name="publicMap" value="">
+            <label for="publicMap">Allow public viewing of map</label><br>
+
+            <button class="deleteButton" href="{% url 'del_user' %}">Delete User</button>
+
+        {% else %}
+        {% endif %}
+    </main>
+
+  </body>
+</html>

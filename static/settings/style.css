@@ -1,0 +1,19 @@
+body {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
+button {
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.deleteButton {
+  max-width: 120px;
+  border-radius: 10px;
+  background-color: #f44336;
+}
