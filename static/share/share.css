@@ -12,25 +12,33 @@
 
 .modal-content {
   background-color: #fefefe;
-  border-radius: 20px;
-  margin: 50% auto auto auto;
-  padding: 20px;
+  border-radius: 10px;
   border: 1px solid #888;
+  padding-left: 10px;
+
+  text-align: center;
   width: 80%;
+  margin-left: 10%;
+  height: 175px;
+  position: absolute;
+  top: 40%;
 }
 
 .modal-text {
   background-color: #2c2e2f;
   color: #fefefe;
-  border-radius: 20px;
-  padding: 15px;
+  border-radius: 10px;
+  padding: 10px;
   overflow: auto;
   white-space: nowrap;
+  text-align: left;
 }
 
 .close {
   color: #aaaaaa;
   float: right;
+  padding: 20px;
+  padding-right: 25px;
   font-size: 28px;
   font-weight: bold;
 }
@@ -55,7 +63,7 @@
   width: 85%;
 }
 .copy-column {
-  float: right;
+  float: left;
   width: 10%;
 }
 

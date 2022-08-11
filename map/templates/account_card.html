@@ -1,17 +1,13 @@
+{% if not user.is_authenticated %}
 <div class="cardContainer" id="" style="margin-left: 175px;">
-    {% if user.is_authenticated %}
-    <div class="alert alert-success" role="alert" style="text-align: center;">
-      <h3>Welcome {{ user.username | capfirst }}!</h3>
-      <a class="loginButtons" href="{% url 'logout' %}">Logout?</a>
+  <div class="alert alert-success" role="alert" style="text-align: center;">
+    <div>
+      <h3>Welcome!</h3>
+      <p>Log in to create your map</p>
     </div>
-    {% else %}
-    <div class="alert alert-success" role="alert" style="text-align: center;">
-      <div>
-        <h3>Welcome!</h3>
-        <p>Log in to create your map</p>
-      </div>
-      <a class="loginButtons" href="{% url 'register' %}">Signup</a>
-      <a class="loginButtons" href="{% url 'login' %}">Login</a>
-    </div>
-    {% endif %}
+    <a class="loginButtons" href="{% url 'register' %}">Signup</a>
+    <a class="loginButtons" href="{% url 'login' %}">Login</a>
   </div>
+</div>
+{% else %}
+{% endif %}
