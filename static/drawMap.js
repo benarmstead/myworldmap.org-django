@@ -7,6 +7,16 @@ map.setMaxBounds([
 map.attributionControl.setPrefix("");
 map.getRenderer(map).options.padding = 100;
 
+let pointsToggle = document.getElementById("location");
+pointsToggle.addEventListener("click", function () {
+  POINTER_MODE = !POINTER_MODE;
+  if (POINTER_MODE) {
+    pointsToggle.style.color = "#66c144";
+  } else {
+    pointsToggle.style.color = "black";
+  }
+});
+
 L.tileLayer(
   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
   {
@@ -160,26 +170,48 @@ function refreshPoints() {
     element.remove();
   });
 
+  markers = [];
+
   POINTS.forEach((element) => {
-    let marker = L.marker([element[0], element[1]]);
+    let lat = element[0];
+    let lng = element[1];
+    let marker = L.marker([lat, lng]).bindPopup(
+      "<button type='button' onclick='deleteMarker([" +
+        lat +
+        ", " +
+        lng +
+        "])'>Delete</button>"
+    );
     markers.push(marker);
     marker.addTo(map);
   });
 }
 
+function deleteMarker(marker) {
+  console.log(POINTS);
+  POINTS = POINTS.filter((element) => {
+    return !(element[0] == marker[0] && element[1] == marker[1]);
+  });
+  refreshPoints();
+  saveMarkers();
+}
+
+function saveMarkers() {
+  const options = {
+    method: "POST",
+    body: JSON.stringify(POINTS),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+      "X-CSRFToken": csrftoken,
+    },
+  };
+  fetch("/save-points/", options);
+}
+
 map.on("click", function (e) {
   if (POINTER_MODE) {
     POINTS.push([e.latlng.lat, e.latlng.lng]);
-
-    const options = {
-      method: "POST",
-      body: JSON.stringify(POINTS),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "X-CSRFToken": csrftoken,
-      },
-    };
-    fetch("/save-points/", options);
+    saveMarkers();
     refreshPoints();
   }
 });
