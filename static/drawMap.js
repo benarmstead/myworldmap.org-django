@@ -17,6 +17,8 @@ L.tileLayer(
 ).addTo(map);
 
 let info = L.control();
+let markers = [];
+refreshPoints();
 
 info.onAdd = function (map) {
   this._div = L.DomUtil.create("div", "info");
@@ -106,7 +108,7 @@ function getCookie(name) {
 const csrftoken = getCookie("csrftoken");
 
 function selectNation(e) {
-  if (!EDITABLE) {
+  if (!EDITABLE || POINTER_MODE) {
     return;
   }
 
@@ -150,8 +152,37 @@ function selectNation(e) {
       "X-CSRFToken": csrftoken,
     },
   };
-  fetch("/save/", options);
+  fetch("/save-country/", options);
 }
+
+function refreshPoints() {
+  markers.forEach((element) => {
+    element.remove();
+  });
+
+  POINTS.forEach((element) => {
+    let marker = L.marker([element[0], element[1]]);
+    markers.push(marker);
+    marker.addTo(map);
+  });
+}
+
+map.on("click", function (e) {
+  if (POINTER_MODE) {
+    POINTS.push([e.latlng.lat, e.latlng.lng]);
+
+    const options = {
+      method: "POST",
+      body: JSON.stringify(POINTS),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "X-CSRFToken": csrftoken,
+      },
+    };
+    fetch("/save-points/", options);
+    refreshPoints();
+  }
+});
 
 function setCircle() {
   circleProgressWorld.value = Object.keys(COUNTRIES).length;

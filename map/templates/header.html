@@ -4,6 +4,7 @@
 
 <title>Map</title>
 {% load static compress %}
+<link rel="icon" type="image/x-icon" href="{% static '/favicon.png' %}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -19,7 +20,9 @@
 {% compress js %}
 <script type="text/javascript">
     let EDITABLE = {{ editable| safe }}
-    let COUNTRIES = {{ data| safe }};
+    let COUNTRIES = {{ data| safe }}
+    let POINTS = {{ points| safe }}
+    let POINTER_MODE = false
 if (COUNTRIES.includes === undefined) {
     COUNTRIES = COUNTRIES.data;
 }

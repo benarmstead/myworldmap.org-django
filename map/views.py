@@ -7,82 +7,65 @@ from django.contrib.auth import logout
 from .models import MapData
 
 
-def saveData(request):
-    data = request.body.decode("utf-8")
-    user = request.user
+def save_country(request):
+    map_object = MapData.objects.filter(user=request.user)[0]
+    map_object.data = request.body.decode("utf-8")
+    map_object.save()
 
-    if user.is_authenticated:
-        map_object = MapData.objects.filter(user=user)
-
-        try:
-            map_object = map_object[0]
-            map_object.data = data
-            map_object.save()
-
-        except IndexError:
-            map_object = MapData(data=data, user=user.username)
-            map_object.save()
-
-    else:
-        print("User not authenticated")
-        pass
     return HttpResponseRedirect("/")
 
 
-def get_data(username):
-    data = MapData.objects.filter(user=username)
+def save_points(request):
+    map_object = MapData.objects.filter(user=request.user)[0]
+    map_object.points = request.body.decode("utf-8")
+    map_object.save()
 
-    try:
-        data = data[0].data
-    except IndexError:
-        data = "[]"
-
-    return data
+    return HttpResponseRedirect("/")
 
 
-def index(request):
-    editable = "false"
-    if request.user.is_authenticated:
-        editable = "true"
-
+def renderer(request, username, editable):
     return render(
         request,
         "index.html",
-        {"data": get_data(request.user.username), "editable": editable},
+        {
+            "data": MapData.objects.filter(user=username)[0].data,
+            "points": MapData.objects.filter(user=username)[0].points,
+            "editable": editable
+        },
+    )
+
+
+def index(request):
+    if request.user.is_authenticated:
+        return renderer(request, request.user.username, "true")
+    return render(
+        request,
+        "index.html",
+        {
+            "data": [],
+            "points": [],
+            "editable": "false"
+        },
     )
 
 
 def user_viewer(request, username):
-    editable = "false"
-
-    return render(
-        request,
-        "index.html",
-        {"data": get_data(username), "editable": editable},
-    )
+    return renderer(request, username, "false")
 
 
 def settings(request):
-    data = MapData.objects.filter(user=request.user.username)
-    data = data[0]
-
-    public = data.public
+    data = MapData.objects.filter(user=request.user.username)[0]
 
     return render(
         request,
         "settings/index.html",
-        {"public": public},
+        {"public": data.public},
     )
 
 
 def del_user(request):
-    username = request.user.username
-
-    data = MapData.objects.filter(user=username)
-    data.delete()
-    u = User.objects.get(username=username)
-    u.delete()
-
+    MapData.objects.filter(user=request.user.username).delete()
+    User.objects.get(username=request.user.username).delete()
     logout(request)
 
     return redirect('/')
