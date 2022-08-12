@@ -5,6 +5,7 @@ map.setMaxBounds([
   [90, 180],
 ]);
 map.attributionControl.setPrefix("");
+map.getRenderer(map).options.padding = 100;
 
 L.tileLayer(
   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
