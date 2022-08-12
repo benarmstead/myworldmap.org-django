@@ -174,24 +174,31 @@ function refreshPoints() {
   POINTS.forEach((element) => {
     let lat = element[0];
     let lng = element[1];
-    let marker = L.marker([lat, lng]).bindPopup(
-      "<button type='button' onclick='deleteMarker([" +
-        lat +
-        ", " +
-        lng +
-        "])'>Delete</button>"
-    );
+    let marker;
+    if (EDITABLE) {
+      marker = L.marker([lat, lng]).bindPopup(
+        "<button type='button' onclick='deleteMarker([" +
+          lat +
+          ", " +
+          lng +
+          "])'>Delete</button>"
+      );
+    } else {
+      marker = L.marker([lat, lng]);
+    }
     markers.push(marker);
     marker.addTo(map);
   });
 }
 
 function deleteMarker(marker) {
-  POINTS = POINTS.filter((element) => {
-    return !(element[0] == marker[0] && element[1] == marker[1]);
-  });
-  refreshPoints();
-  saveMarkers();
+  if (EDITABLE) {
+    POINTS = POINTS.filter((element) => {
+      return !(element[0] == marker[0] && element[1] == marker[1]);
+    });
+    refreshPoints();
+    saveMarkers();
+  }
 }
 
 function saveMarkers() {
