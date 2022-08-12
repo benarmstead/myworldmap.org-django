@@ -7,15 +7,14 @@ map.setMaxBounds([
 map.attributionControl.setPrefix("");
 map.getRenderer(map).options.padding = 100;
 
-let pointsToggle = document.getElementById("location");
-pointsToggle.addEventListener("click", function () {
+function pointsToggle() {
   POINTER_MODE = !POINTER_MODE;
   if (POINTER_MODE) {
-    pointsToggle.style.color = "#66c144";
+    document.getElementById("location").style.color = "#66c144";
   } else {
-    pointsToggle.style.color = "black";
+    document.getElementById("location").style.color = "black";
   }
-});
+}
 
 L.tileLayer(
   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
@@ -188,7 +187,6 @@ function refreshPoints() {
 }
 
 function deleteMarker(marker) {
-  console.log(POINTS);
   POINTS = POINTS.filter((element) => {
     return !(element[0] == marker[0] && element[1] == marker[1]);
   });
