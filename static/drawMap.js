@@ -186,6 +186,15 @@ function refreshPoints() {
     } else {
       marker = L.marker([lat, lng]);
     }
+    let icon = marker.options.icon;
+    icon.options.iconSize = [10, 16.4];
+    icon.options.shadowSize = [10, 16.4];
+    icon.options.iconAnchor = [10, 16.4];
+    icon.options.shadowAnchor = [10, 16.4];
+    icon.options.popupAnchor = [-4, -16.4];
+
+    marker.setIcon(icon);
+
     markers.push(marker);
     marker.addTo(map);
   });
