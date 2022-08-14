@@ -8,7 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     
     {% load static %}
-    <link rel="icon" type="image/x-icon" href="{% static '/favicon.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static '/favicon/favicon.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -23,7 +23,8 @@
             <p>Welcome {{request.user.username}}</p>
             <p>Settings in progress</p>
             <p><a href="{% url 'index' %}">Home</a></p>
-            <input type="checkbox" id="publicMap" name="publicMap" value="">
+            
+            <input type="checkbox" id="setPublic" name="setPublic" {% if public %}checked{% endif %}>
             <label for="publicMap">Allow public viewing of map</label><br>
 
             <button class="deleteButton" href="{% url 'del_user' %}">Delete User</button>

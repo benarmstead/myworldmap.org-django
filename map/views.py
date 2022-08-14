@@ -50,17 +50,13 @@ def index(request):
 
 
 def user_viewer(request, username):
+    banned = ["favicon.ico"]
+    if (username in banned):
+        return render(
+            request,
+            "index.html"
+        )
     return renderer(request, username, "false")
-
-
-def settings(request):
-    data = MapData.objects.filter(user=request.user.username)[0]
-
-    return render(
-        request,
-        "settings/index.html",
-        {"public": data.public},
-    )
 
 
 def del_user(request):
