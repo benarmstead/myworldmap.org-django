@@ -34,4 +34,25 @@ def profile(request):
 
 
 def settings(request):
-    return render(request, "settings/index.html")
+    data = MapData.objects.filter(user=request.user.username)[0]
+
+    return render(
+        request,
+        "settings/index.html",
+        {"public": data.public},
+    )
+
+
+def settingsPublic(request):
+    data = MapData.objects.filter(user=request.user.username)[0]
+
+    if request.method == 'POST':
+        box = request.POST.get("setPublic")
+        if (box == "on"):
+            data.public = True
+        else:
+            data.public = False
+
+        data.save()
+
+    return redirect("/settings/")

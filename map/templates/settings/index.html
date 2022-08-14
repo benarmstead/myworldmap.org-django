@@ -20,14 +20,22 @@
     <main>
         {% if user.is_authenticated %}
             <h1>Settings</h1>
-            <p>Welcome {{request.user.username}}</p>
-            <p>Settings in progress</p>
-            <p><a href="{% url 'index' %}">Home</a></p>
+            <div class="buttonGroup">
+              <a class="homeButton buttonInGroup" href="{% url 'index' %}">Home</a>
+              <a class="logoutButton buttonInGroup" href="{% url 'logout' %}">Logout</a>
+              <a class="deleteButton buttonInGroup" href="{% url 'del_user' %}">Delete User</a>
+            </div>
             
-            <input type="checkbox" id="setPublic" name="setPublic" {% if public %}checked{% endif %}>
-            <label for="publicMap">Allow public viewing of map</label><br>
+            <h3>Username</h3>
+            <p>{{request.user.username}}</p>
 
-            <button class="deleteButton" href="{% url 'del_user' %}">Delete User</button>
+            <h3>Public</h3>
+            <form action="{% url 'set_public' %}" method="post">
+              {% csrf_token %}
+              <label for="publicMap">Allow public viewing of map</label>
+              <input type="checkbox" id="setPublic" name="setPublic" onChange="this.form.submit()" {% if public %}checked{% endif %}>
+            </form>
+            
 
         {% else %}
         {% endif %}

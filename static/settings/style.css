@@ -12,8 +12,26 @@ button {
   opacity: 0.9;
 }
 
-.deleteButton {
+.buttonInGroup {
   max-width: 120px;
   border-radius: 10px;
+  padding: 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.homeButton {
+  background-color: green;
+}
+
+.deleteButton {
   background-color: #f44336;
+}
+
+.logoutButton {
+  background-color: grey;
+}
+
+.buttonGroup {
+  padding: 10px;
 }

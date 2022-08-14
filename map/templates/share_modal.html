@@ -1,6 +1,11 @@
 <div id="myModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
+    {% if not public %}
+    <h3>Share link will not work!</h3>
+    <h4>You must first make your map public in settings.</h4>
+    <a class="setting-item" style="color: black;" href="{% url 'settings' %}"><i class="fa-solid fa-user-gear "></i></a>
+    {% else %}
     <h2>Share map</h2>
     <div class="row">
       <div class="text-column">
@@ -11,6 +16,7 @@
       </div>
     </div>
     <p id="copiedMessage" style="margin-left: 5px;"></p>
+    {% endif %}
   </div>
 </div>
 

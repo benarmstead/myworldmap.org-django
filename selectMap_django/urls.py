@@ -26,13 +26,14 @@ urlpatterns = [
     path("robots.txt", TemplateView.as_view(
         template_name="robots.txt", content_type="text/plain")),
     path('admin/', admin.site.urls),
+    path('settings/public/', settingsPublic, name="set_public"),
     path('settings/delete/', del_user, name="del_user"),
+    path('settings/', settings, name="settings"),
     path('', index, name="index"),
     path('<str:username>', user_viewer),
     path('save-country/', save_country),
     path('save-points/', save_points),
     path('register/', register, name='register'),
-    path('settings/', settings, name='settings'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='index.html'), name='logout'),
 ]

@@ -24,13 +24,15 @@ def save_points(request):
 
 
 def renderer(request, username, editable):
+    mapObj = MapData.objects.filter(user=username)[0]
     return render(
         request,
         "index.html",
         {
-            "data": MapData.objects.filter(user=username)[0].data,
-            "points": MapData.objects.filter(user=username)[0].points,
-            "editable": editable
+            "data": mapObj.data,
+            "points": mapObj.points,
+            "public": mapObj.public,
+            "editable": editable,
         },
     )
 
@@ -51,7 +53,10 @@ def index(request):
 
 def user_viewer(request, username):
     banned = ["favicon.ico"]
-    if (username in banned):
+    if (
+            username in banned or
+            not MapData.objects.filter(user=username)[0].public
+    ):
         return render(
             request,
             "index.html"
