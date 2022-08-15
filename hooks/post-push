@@ -1,2 +1,0 @@
-hookDir=$(dirname $0)
-$hookDir/deploy.sh
