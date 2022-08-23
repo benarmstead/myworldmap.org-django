@@ -135,7 +135,7 @@ const countryList = {
   GEO: "Georgia",
   DEU: "Germany",
   GHA: "Ghana",
-  GIB: "Gibraltar",
+  //GIB: "Gibraltar",
   GRC: "Greece",
   GRL: "Greenland",
   GRD: "Grenada",
