@@ -1,6 +1,6 @@
 .circle-progress-value {
   stroke-width: 6px;
-  stroke: #dfc5c4;
+  stroke: green;
   stroke-linecap: round;
 }
 .circle-progress-circle {

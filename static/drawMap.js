@@ -50,10 +50,10 @@ function style(feature) {
     return {
       weight: 1,
       opacity: 1,
-      color: "#dfc5c4",
+      color: "green",
       dashArray: "",
       fillOpacity: 0.3,
-      fillColor: "#dfc5c4",
+      fillColor: "green",
     };
   } else {
     return {
@@ -69,14 +69,14 @@ function highlightFeature(e) {
   if (COUNTRIES.includes(layer.feature.properties.adm0_a3)) {
     layer.setStyle({
       weight: 3,
-      color: "#dfc5c4",
+      color: "green",
       dashArray: "",
       fillOpacity: 0.3,
     });
   } else {
     layer.setStyle({
       weight: 3,
-      color: "#dfc5c4",
+      color: "blue",
       dashArray: "",
       fillOpacity: 0.3,
     });
@@ -125,7 +125,7 @@ function selectNation(e) {
 
   layer.setStyle({
     weight: 3,
-    color: "#dfc5c4",
+    color: "blue",
     dashArray: "",
     fillOpacity: 0.3,
   });
