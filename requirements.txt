@@ -1,3 +1,3 @@
-Django==4.0.7
+Django==4.0.8
 django-compressor
 python-memcached
