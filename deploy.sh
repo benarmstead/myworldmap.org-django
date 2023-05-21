@@ -1,3 +1,3 @@
 git pull
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
